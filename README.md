@@ -1,4 +1,3 @@
-# Varenyam
 
 <p align="center">
 	<img src="public/assets/images/logo.png" alt="Varenyam logo" width="220" />
