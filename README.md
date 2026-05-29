@@ -1,6 +1,8 @@
-
 <p align="center">
-	<img src="public/assets/images/logo.png" alt="Varenyam logo" width="220" />
+	<picture>
+		<source srcset="public/assets/images/logo-white.png" media="(prefers-color-scheme: dark)">
+		<img src="public/assets/images/logo.png" alt="Varenyam logo" width="220" />
+	</picture>
 </p>
 
 This is a Next.js frontend project (TypeScript) containing a small marketing site with sections for products, industries, about, and contact.
