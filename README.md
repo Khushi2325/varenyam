@@ -1,4 +1,8 @@
-# Varenyam — Next.js Frontend
+# Varenyam
+
+<p align="center">
+	<img src="public/assets/images/logo.png" alt="Varenyam logo" width="220" />
+</p>
 
 This is a Next.js frontend project (TypeScript) containing a small marketing site with sections for products, industries, about, and contact.
 
