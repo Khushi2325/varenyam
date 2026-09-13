@@ -4,12 +4,13 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Gift, ArrowRight } from "lucide-react";
 
 const NAV_LINKS = [
   { name: "Home", path: "/" },
   { name: "About Us", path: "/about" },
-  { name: "Products", path: "/products" },
+  { name: "Industrial Catalog", path: "/products" },
+  { name: "Corporate Gifting", path: "/products#corporate-gifting" },
   { name: "Industries", path: "/industries" },
   { name: "Contact", path: "/contact" },
 ];
@@ -33,105 +34,113 @@ export default function Navbar() {
   return (
     <>
       <motion.header
-        className={`fixed top-0 left-0 right-0 z-[100] transition-colors duration-300 ${
-          shouldHaveSolidBg ? "bg-white/90 backdrop-blur-md shadow-sm" : "bg-transparent"
+        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
+          shouldHaveSolidBg 
+            ? "bg-[#0F294D]/95 backdrop-blur-xl border-b border-white/10 py-3 shadow-xl text-white" 
+            : "bg-gradient-to-b from-[#0F294D]/90 via-[#0F294D]/40 to-transparent py-4 text-white"
         }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="container mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
+          
           {/* Logo */}
-          <Link href="/" className="flex items-center group py-2">
+          <Link href="/" className="flex items-center group py-1">
             <img 
-              src="/assets/images/logo.png?v=2" 
-              alt="Varenyam Logo" 
-              className={`h-16 md:h-20 w-auto object-contain transition-all duration-300 ${shouldHaveSolidBg ? "" : "brightness-0 invert"}`} 
+              src="/assets/images/logo-white.png" 
+              alt="Varenyam Industrial Suppliers Logo" 
+              className="h-11 sm:h-13 w-auto object-contain transition-all duration-300" 
             />
           </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.path}
-                href={link.path}
-                className={`text-sm font-medium transition-colors hover:text-primary ${
-                  pathname === link.path
-                    ? "text-primary font-semibold"
-                    : shouldHaveSolidBg
-                    ? "text-text-dark/80"
-                    : "text-white/90 hover:text-white"
-                }`}
-              >
-                {link.name}
-              </Link>
-            ))}
+          {/* Desktop Nav Links */}
+          <nav className="hidden lg:flex items-center gap-8">
+            {NAV_LINKS.map((link) => {
+              const isActive = pathname === link.path;
+              return (
+                <Link
+                  key={link.path}
+                  href={link.path}
+                  className={`text-sm font-semibold transition-all flex items-center gap-1.5 relative py-1 ${
+                    isActive
+                      ? "text-sky-300 font-bold border-b-2 border-sky-400"
+                      : "text-white/85 hover:text-white"
+                  }`}
+                >
+                  {link.name === "Corporate Gifting" && <Gift className="w-3.5 h-3.5 text-amber-400" />}
+                  {link.name}
+                </Link>
+              );
+            })}
+
             <Link
               href="/contact"
-              className="px-6 py-2.5 bg-primary text-white text-sm font-semibold rounded-md shadow-md shadow-primary/20 hover:bg-primary-deep transition-all transform hover:-translate-y-0.5"
+              className="px-6 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-full shadow-lg shadow-blue-600/30 transition-all transform hover:-translate-y-0.5 flex items-center gap-1.5 border border-blue-400/20"
             >
-              Get a Quote
+              <span>Get a Quote</span>
+              <ArrowRight className="w-4 h-4" />
             </Link>
           </nav>
 
           {/* Mobile Menu Toggle */}
           <button
-            className={`md:hidden p-2 rounded-md ${shouldHaveSolidBg ? "text-text-dark" : "text-white"}`}
+            className="lg:hidden p-2 rounded-xl border text-white border-white/20 bg-white/10"
             onClick={() => setIsMobileMenuOpen(true)}
           >
-            <Menu className="w-7 h-7" />
+            <Menu className="w-6 h-6" />
           </button>
         </div>
       </motion.header>
 
-      {/* Full-Screen Mobile Nav */}
+      {/* Full-Screen Mobile Navigation Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            className="fixed inset-0 bg-white z-[9999] flex flex-col md:hidden overflow-y-auto"
+            className="fixed inset-0 bg-[#0F294D]/98 backdrop-blur-2xl z-[9999] flex flex-col text-white overflow-y-auto"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="container mx-auto px-6 py-4 flex items-center justify-between border-b border-gray-100">
-              <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="py-2">
+            <div className="container mx-auto px-6 py-5 flex items-center justify-between border-b border-white/10">
+              <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="py-1">
                 <img 
-                  src="/assets/images/logo.png?v=2" 
+                  src="/assets/images/logo-white.png" 
                   alt="Varenyam Logo" 
-                  className="h-16 w-auto object-contain" 
+                  className="h-12 w-auto object-contain" 
                 />
               </Link>
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="p-2 text-text-dark hover:bg-gray-100 rounded-md transition-colors"
+                className="p-2 text-white hover:bg-white/10 rounded-xl transition-colors"
               >
-                <X className="w-8 h-8" />
+                <X className="w-7 h-7" />
               </button>
             </div>
 
-            <div className="flex flex-col items-center justify-center flex-grow gap-8 px-6 py-12">
+            <div className="flex flex-col items-center justify-center flex-grow gap-6 px-6 py-12">
               {NAV_LINKS.map((link) => (
                 <Link
                   key={link.path}
                   href={link.path}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`text-2xl font-bold tracking-wide transition-colors ${
-                    pathname === link.path ? "text-primary" : "text-text-dark hover:text-primary"
+                  className={`text-xl font-bold tracking-wide transition-colors flex items-center gap-2 ${
+                    pathname === link.path ? "text-sky-300" : "text-white/80 hover:text-white"
                   }`}
                 >
+                  {link.name === "Corporate Gifting" && <Gift className="w-5 h-5 text-amber-400" />}
                   {link.name}
                 </Link>
               ))}
               
-              <div className="w-full max-w-xs pt-8 mt-4 border-t border-gray-100">
+              <div className="w-full max-w-xs pt-6 mt-4 border-t border-white/10">
                 <Link
                   href="/contact"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="w-full py-4 bg-primary text-white text-center font-bold text-lg rounded-xl shadow-lg shadow-primary/30 flex items-center justify-center hover:bg-primary-deep transition-colors"
+                  className="w-full py-4 bg-primary text-white text-center font-bold text-base rounded-xl shadow-lg flex items-center justify-center gap-2 hover:bg-blue-600 transition-colors"
                 >
-                  Get a Quote
+                  Get a Quote <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
             </div>

@@ -1,17 +1,21 @@
 import HeroSection from "@/sections/HeroSection";
 import AboutSection from "@/sections/AboutSection";
 import ProductsSection from "@/sections/ProductsSection";
+import CorporateGiftingSection from "@/sections/CorporateGiftingSection";
+import WhyVarenyamSection from "@/sections/WhyVarenyamSection";
 import IndustriesSection from "@/sections/IndustriesSection";
-import ContactCTASection from "@/sections/ContactCTASection";
+import ContactFormSection from "@/sections/ContactFormSection";
 
 export default function Home() {
   return (
     <>
       <HeroSection />
       <AboutSection />
-      <ProductsSection limit={3} />
+      <ProductsSection limit={6} />
+      <CorporateGiftingSection />
+      <WhyVarenyamSection />
       <IndustriesSection />
-      <ContactCTASection />
+      <ContactFormSection />
     </>
   );
 }
