@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, Phone, Mail, Clock, Gift, ShieldCheck } from "lucide-react";
+import { MapPin, Phone, Mail, Globe, ShieldCheck, Send, CheckCircle2, MessageSquare } from "lucide-react";
 
 export default function ContactFormSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -30,11 +30,9 @@ export default function ContactFormSection() {
         setIsSuccess(true);
         form.reset();
       } else {
-        console.error("Form submission failed", data);
         setIsError(true);
       }
-    } catch (error) {
-      console.error("Error submitting form", error);
+    } catch {
       setIsError(true);
     } finally {
       setIsSubmitting(false);
@@ -42,199 +40,240 @@ export default function ContactFormSection() {
   };
 
   return (
-    <section className="py-16 md:py-24 bg-surface" id="contact-form">
-      <div className="container mx-auto px-6 max-w-6xl">
-        <div className="grid lg:grid-cols-2 gap-12 md:gap-16">
+    <section className="py-20 md:py-28 bg-white" id="contact">
+      <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
           
-          {/* Left Column: Let's Talk Business */}
+          {/* Left Column: Official Contact & Company Info */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="lg:col-span-5 space-y-6"
           >
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-4">
-              <ShieldCheck className="w-4 h-4 text-primary" />
-              <span>Contact Varenyam Industrial Suppliers</span>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 text-blue-900 text-xs font-bold uppercase tracking-wider border border-blue-200/60">
+              <ShieldCheck className="w-4 h-4 text-blue-900" />
+              <span>Contact Varenyam</span>
             </div>
 
-            <h2 className="text-3xl md:text-4xl font-extrabold text-text-dark mb-6">
-              Let's Build a <span className="text-primary">Safer Workplace Together</span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight">
+              Let&apos;s Build a <span className="text-blue-900">Safer Workplace Together</span>
             </h2>
 
-            <p className="text-text-dark/70 text-lg mb-10 max-w-md leading-relaxed">
-              Whether you need turnkey project procurement, site safety outfitting, ATEX compliance gear, or bespoke corporate gifting hampers, our technical engineering team is ready to assist you.
+            <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+              <p className="text-xs font-extrabold text-blue-950 uppercase tracking-wider mb-1">
+                VARENYAM INDUSTRIAL SUPPLIERS
+              </p>
+              <p className="text-xs font-semibold text-slate-600">
+                Protecting People. Safeguarding Assets. Ensuring Compliance.
+              </p>
+            </div>
+
+            <p className="text-slate-600 text-sm leading-relaxed">
+              Whether you require turnkey greenfield project procurement, ATEX certification compliance, fire suppression systems, or corporate gifting merchandise, our engineering team is ready to consult.
             </p>
             
-            <div className="space-y-8">
-              {/* Corporate Office */}
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center shrink-0 text-primary">
-                  <MapPin className="w-6 h-6" />
+            {/* Contact Details from Brochure / Repository */}
+            <div className="space-y-4 pt-2">
+              <div className="flex items-start gap-3.5 p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80">
+                <div className="w-10 h-10 bg-blue-100/80 text-blue-900 rounded-xl flex items-center justify-center shrink-0">
+                  <MapPin className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-text-dark mb-1">Corporate & Office Address</h4>
-                  <p className="text-text-dark/75 leading-relaxed text-sm">
+                  <h4 className="font-bold text-slate-900 text-xs uppercase tracking-wide">Corporate Address</h4>
+                  <p className="text-xs text-slate-600 leading-relaxed mt-0.5">
                     VARENYAM INDUSTRIAL SUPPLIERS<br />
-                    Industrial Safety | Fire Safety | ATEX | ESD | Static Grounding | Technical Services | Corporate Gifting
+                    Vadodara, Gujarat, India
                   </p>
                 </div>
               </div>
 
-              {/* Phone */}
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center shrink-0 text-primary">
-                  <Phone className="w-6 h-6" />
+              <div className="flex items-start gap-3.5 p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80">
+                <div className="w-10 h-10 bg-blue-100/80 text-blue-900 rounded-xl flex items-center justify-center shrink-0">
+                  <Phone className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-text-dark mb-1">Mobile & Office Contact</h4>
-                  <p className="text-text-dark/80 font-semibold text-sm">Inquiry Helpline: +91 94085 56985</p>
-                  <p className="text-xs text-text-dark/50 mt-1">Monday - Saturday, 9:00 AM to 6:30 PM IST</p>
+                  <h4 className="font-bold text-slate-900 text-xs uppercase tracking-wide">Mobile / Office Contact</h4>
+                  <a href="tel:+919408556985" className="text-xs font-bold text-blue-900 hover:underline block mt-0.5">
+                    +91 94085 56985
+                  </a>
+                  <p className="text-[11px] text-slate-500">Monday – Saturday: 9:00 AM – 6:30 PM IST</p>
                 </div>
               </div>
 
-              {/* Email */}
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center shrink-0 text-primary">
-                  <Mail className="w-6 h-6" />
+              <div className="flex items-start gap-3.5 p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80">
+                <div className="w-10 h-10 bg-blue-100/80 text-blue-900 rounded-xl flex items-center justify-center shrink-0">
+                  <Mail className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-text-dark mb-1">Email Inquiry</h4>
-                  <a href="mailto:varenyamindustries@gmail.com" className="text-primary font-bold hover:underline block text-sm">
+                  <h4 className="font-bold text-slate-900 text-xs uppercase tracking-wide">Email Enquiries</h4>
+                  <a href="mailto:varenyamindustries@gmail.com" className="text-xs font-bold text-blue-900 hover:underline block mt-0.5">
                     varenyamindustries@gmail.com
                   </a>
                 </div>
               </div>
+
+              <div className="flex items-start gap-3.5 p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80">
+                <div className="w-10 h-10 bg-blue-100/80 text-blue-900 rounded-xl flex items-center justify-center shrink-0">
+                  <Globe className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-slate-900 text-xs uppercase tracking-wide">Official Website</h4>
+                  <span className="text-xs text-slate-600 block mt-0.5">www.varenyamindustrial.com</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-2">
+              <a
+                href="https://wa.me/919408556985?text=Hello%20Varenyam%20Industrial%20Suppliers,%20I%20would%20like%20to%20request%20a%20quotation."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-md transition-colors"
+              >
+                <MessageSquare className="w-4 h-4" />
+                <span>Instant WhatsApp Business RFQ</span>
+              </a>
             </div>
           </motion.div>
 
-          {/* Right Column: Request a Quote Form */}
+          {/* Right Column: Request for Quotation (RFQ) Form */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-white p-6 sm:p-10 rounded-3xl shadow-xl border border-gray-100"
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="lg:col-span-7 bg-slate-50 p-6 sm:p-8 md:p-10 rounded-3xl border border-slate-200/90 shadow-xl"
           >
-            <div className="flex items-center justify-between mb-8">
-              <h3 className="text-2xl font-bold text-text-dark">Request a Technical Quote</h3>
-              <span className="px-3 py-1 bg-amber-400/10 text-amber-600 text-xs font-bold rounded-full flex items-center gap-1 border border-amber-400/20">
-                <Gift className="w-3.5 h-3.5 text-amber-500" /> Industrial & Gifting
-              </span>
-            </div>
-            
+            <h3 className="text-xl font-extrabold text-slate-900 mb-1">
+              Request a Formal Quote / Technical Inquiry
+            </h3>
+            <p className="text-xs text-slate-600 mb-6">
+              Complete the specification form below. Our industrial sales team responds within 24 business hours.
+            </p>
+
             {isSuccess ? (
-              <div className="bg-green-50 border border-green-200 text-green-700 p-6 rounded-2xl text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
-                </div>
-                <h4 className="text-xl font-bold mb-2">Inquiry Submitted Successfully!</h4>
-                <p className="text-sm text-green-800">Thank you for reaching out to Varenyam Industrial Suppliers. Our technical estimation team will contact you shortly.</p>
-                <button 
-                  onClick={() => setIsSuccess(false)}
-                  className="mt-6 text-primary font-bold hover:underline text-sm"
-                >
-                  Submit another inquiry
-                </button>
+              <div className="bg-emerald-50 border border-emerald-200 p-8 rounded-2xl text-center">
+                <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto mb-3" />
+                <h4 className="text-lg font-bold text-emerald-900 mb-1">Inquiry Submitted Successfully</h4>
+                <p className="text-xs text-emerald-700 max-w-md mx-auto">
+                  Thank you for reaching out to Varenyam Industrial Suppliers. Our technical representative will review your request and send a detailed quotation.
+                </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY_HERE" />
-                <input type="hidden" name="subject" value="New Inquiry from Varenyam Industrial Suppliers Website" />
-                <input type="hidden" name="from_name" value="Varenyam Portal" />
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
+                <input type="hidden" name="subject" value="New B2B Website Inquiry - Varenyam Industrial" />
+                <input type="checkbox" name="botcheck" className="hidden" style={{ display: "none" }} />
 
-                {isError && (
-                  <div className="bg-red-50 border border-red-200 text-red-700 p-4 rounded-xl text-xs mb-4">
-                    Connection error. Please call us directly at +91 94085 56985 or email varenyamindustries@gmail.com
-                  </div>
-                )}
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div className="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-text-dark mb-1.5">Full Name *</label>
-                    <input 
-                      type="text" 
+                    <label className="block text-xs font-bold text-slate-700 mb-1">Contact Name *</label>
+                    <input
+                      type="text"
                       name="name"
                       required
-                      placeholder="e.g. Rajesh Kumar" 
-                      className="w-full px-4 py-3 rounded-xl bg-surface border border-gray-200 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-text-dark text-sm"
+                      placeholder="e.g. Rajesh Patel"
+                      className="w-full px-3.5 py-2.5 text-xs bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-900"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-text-dark mb-1.5">Company / Plant Name</label>
-                    <input 
-                      type="text" 
+                    <label className="block text-xs font-bold text-slate-700 mb-1">Company / Facility Name *</label>
+                    <input
+                      type="text"
                       name="company"
-                      placeholder="e.g. Apex Energy Ltd." 
-                      className="w-full px-4 py-3 rounded-xl bg-surface border border-gray-200 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-text-dark text-sm"
+                      required
+                      placeholder="e.g. Reliance / L&T / Adani"
+                      className="w-full px-3.5 py-2.5 text-xs bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-900"
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div className="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-text-dark mb-1.5">Email Address *</label>
-                    <input 
-                      type="email" 
+                    <label className="block text-xs font-bold text-slate-700 mb-1">Work Email *</label>
+                    <input
+                      type="email"
                       name="email"
                       required
-                      placeholder="name@company.com" 
-                      className="w-full px-4 py-3 rounded-xl bg-surface border border-gray-200 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-text-dark text-sm"
+                      placeholder="procurement@company.com"
+                      className="w-full px-3.5 py-2.5 text-xs bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-900"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-text-dark mb-1.5">Phone / Mobile *</label>
-                    <input 
-                      type="tel" 
+                    <label className="block text-xs font-bold text-slate-700 mb-1">Mobile / Phone Number *</label>
+                    <input
+                      type="tel"
                       name="phone"
                       required
-                      placeholder="+91 98765 43210" 
-                      className="w-full px-4 py-3 rounded-xl bg-surface border border-gray-200 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-text-dark text-sm"
+                      placeholder="+91 94085 XXXXX"
+                      className="w-full px-3.5 py-2.5 text-xs bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-900"
                     />
                   </div>
                 </div>
 
-                <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-text-dark mb-1.5">Inquiry Type / Category *</label>
-                  <select name="interest" required className="w-full px-4 py-3 rounded-xl bg-surface border border-gray-200 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-text-dark text-sm appearance-none">
-                    <option value="">Select Requirement Type</option>
-                    <option value="Corporate Gifting & Executive Hampers">🎁 Corporate Gifting & Executive Hampers</option>
-                    <option value="Industrial Safety & PPE Kits">🛡️ Industrial Safety & PPE Kits</option>
-                    <option value="Fire Detection & Suppression Systems">🔥 Fire Detection & Suppression Systems</option>
-                    <option value="ATEX & Explosion Proof Equipment">⚡ ATEX & Explosion Proof Equipment</option>
-                    <option value="Static Earthing & ESD Protection">⚡ Static Earthing & ESD Protection</option>
-                    <option value="Non-Sparking & Insulated Hand Tools">🔧 Non-Sparking & Insulated Hand Tools</option>
-                    <option value="Gas Detection & Process Safety">Gauge Gas Detection & Process Safety</option>
-                    <option value="Turnkey Greenfield / Brownfield Procurement">🏗️ Turnkey Greenfield / Brownfield Project</option>
-                    <option value="Technical Audit & AMC Services">📋 Technical Audit & AMC Services</option>
-                  </select>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 mb-1">Inquiry Domain *</label>
+                    <select
+                      name="domain"
+                      className="w-full px-3.5 py-2.5 text-xs bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-900 font-medium text-slate-800"
+                    >
+                      <option value="industrial-safety">Industrial Safety & PPE</option>
+                      <option value="fire-safety">Fire Safety Equipment & Systems</option>
+                      <option value="atex">Explosion Proof / ATEX Gear</option>
+                      <option value="esd">Static Earthing & ESD Systems</option>
+                      <option value="gas-detection">Gas Detection & Environmental</option>
+                      <option value="tools">Hand & Power Tools</option>
+                      <option value="corporate-gifting">Corporate Gifting & Apparel</option>
+                      <option value="services">Installation, Commissioning or AMC</option>
+                      <option value="turnkey">Turnkey Project Procurement</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 mb-1">Target Timeline / Delivery</label>
+                    <select
+                      name="timeline"
+                      className="w-full px-3.5 py-2.5 text-xs bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-900 font-medium text-slate-800"
+                    >
+                      <option value="immediate">Immediate (1-2 Weeks)</option>
+                      <option value="1month">Within 1 Month</option>
+                      <option value="quarter">Next Quarter / Greenfield Project</option>
+                      <option value="annual">Annual Rate Contract (ARC / AMC)</option>
+                    </select>
+                  </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-text-dark mb-1.5">Project Specs / Quantities *</label>
-                  <textarea 
+                  <label className="block text-xs font-bold text-slate-700 mb-1">Product Specifications / Requirement Details *</label>
+                  <textarea
                     name="message"
                     required
-                    rows={3} 
-                    placeholder="Describe item specifications, estimated quantities, target delivery timeline..."
-                    className="w-full px-4 py-3 rounded-xl bg-surface border border-gray-200 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-text-dark text-sm resize-none"
-                  ></textarea>
+                    rows={4}
+                    placeholder="List specific items, estimated quantities, standard compliance required (IS/EN/ANSI), or project delivery location..."
+                    className="w-full px-3.5 py-2.5 text-xs bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-900 resize-none"
+                  />
                 </div>
 
-                <button 
-                  type="submit" 
+                {isError && (
+                  <p className="text-xs text-red-600 font-semibold">
+                    Submission error occurred. Please call or email us directly at varenyamindustries@gmail.com
+                  </p>
+                )}
+
+                <button
+                  type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-4 bg-primary text-white font-bold text-sm rounded-xl shadow-lg hover:bg-primary-deep transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="w-full py-3.5 bg-blue-900 hover:bg-blue-800 text-white font-bold text-xs sm:text-sm rounded-xl shadow-md transition-all flex items-center justify-center gap-2 disabled:opacity-60"
                 >
-                  {isSubmitting ? (
-                    <>
-                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                      Submitting Quote Request...
-                    </>
-                  ) : (
-                    "Submit Inquiry Request"
-                  )}
+                  <Send className="w-4 h-4" />
+                  <span>{isSubmitting ? "Submitting Inquiry..." : "Submit Request for Quotation (RFQ)"}</span>
                 </button>
               </form>
             )}
+
           </motion.div>
 
         </div>
