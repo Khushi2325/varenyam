@@ -8,7 +8,8 @@ import {
   Menu, 
   X, 
   ChevronDown, 
-  ArrowRight, 
+  ArrowRight,
+  ArrowUpRight, 
   Gift, 
   ShieldCheck, 
   Wrench, 
@@ -81,7 +82,7 @@ export default function Navbar() {
             />
           </Link>
 
-          {/* Desktop Navigation Links */}
+          {/* Desktop Navigation Links matching Reference Design */}
           <nav className="hidden lg:flex items-center gap-7">
             <Link
               href="/"
@@ -92,16 +93,7 @@ export default function Navbar() {
               Home
             </Link>
 
-            <Link
-              href="/about"
-              className={`text-sm font-bold transition-colors py-1 ${
-                pathname === "/about" ? "text-blue-900 border-b-2 border-blue-900" : "text-slate-700 hover:text-blue-900"
-              }`}
-            >
-              About Us
-            </Link>
-
-            {/* Products with Mega Menu Dropdown */}
+            {/* Industrial Solutions with Mega Menu Dropdown */}
             <div 
               className="relative"
               onMouseEnter={handleMouseEnter}
@@ -113,7 +105,7 @@ export default function Navbar() {
                   pathname.startsWith("/products") ? "text-blue-900 border-b-2 border-blue-900" : "text-slate-700 hover:text-blue-900"
                 }`}
               >
-                <span>Products & Catalogue</span>
+                <span>Industrial Solutions</span>
                 <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isMegaMenuOpen ? "rotate-180 text-blue-900" : ""}`} />
               </Link>
 
@@ -205,10 +197,23 @@ export default function Navbar() {
             </div>
 
             <Link
-              href="/#services"
-              className="text-sm font-bold text-slate-700 hover:text-blue-900 transition-colors py-1"
+              href="/corporate-gifting"
+              className={`text-sm font-bold transition-colors py-1 ${
+                pathname === "/corporate-gifting"
+                  ? "text-blue-900 border-b-2 border-blue-900"
+                  : "text-slate-700 hover:text-blue-900"
+              }`}
             >
-              Technical Services
+              Corporate Gifting
+            </Link>
+
+            <Link
+              href="/about"
+              className={`text-sm font-bold transition-colors py-1 ${
+                pathname === "/about" ? "text-blue-900 border-b-2 border-blue-900" : "text-slate-700 hover:text-blue-900"
+              }`}
+            >
+              About
             </Link>
 
             <Link
@@ -221,17 +226,6 @@ export default function Navbar() {
             </Link>
 
             <Link
-              href="/corporate-gifting"
-              className={`text-sm font-bold transition-colors py-1 ${
-                pathname === "/corporate-gifting"
-                  ? "text-blue-900 border-b-2 border-blue-900"
-                  : "text-slate-700 hover:text-blue-900"
-              }`}
-            >
-              Corporate Gifting
-            </Link>
-
-            <Link
               href="/contact"
               className={`text-sm font-bold transition-colors py-1 ${
                 pathname === "/contact" ? "text-blue-900 border-b-2 border-blue-900" : "text-slate-700 hover:text-blue-900"
@@ -241,14 +235,14 @@ export default function Navbar() {
             </Link>
           </nav>
 
-          {/* Right Action Button: Request an Enquiry */}
+          {/* Right Action Button: Get in touch ↗ */}
           <div className="hidden lg:flex items-center gap-3">
             <Link
               href="/contact"
-              className="px-5 py-2.5 bg-blue-900 hover:bg-blue-800 text-white text-xs font-bold rounded-xl shadow-md shadow-blue-950/20 transition-all transform hover:-translate-y-0.5 flex items-center gap-2"
+              className="px-5 py-2.5 bg-blue-950 hover:bg-blue-900 text-white text-xs font-bold rounded-lg shadow-md shadow-blue-950/20 transition-all transform hover:-translate-y-0.5 flex items-center gap-2 group"
             >
-              <span>Request an Enquiry</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <span>Get in touch</span>
+              <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </Link>
           </div>
 
